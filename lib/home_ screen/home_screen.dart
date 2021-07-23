@@ -27,29 +27,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: _screens[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (index) {
-            _currentIndex = index;
-            setState(() {});
-          },
-          currentIndex: _currentIndex,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag),
-              label: "Order",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: "Profile",
-            ),
-          ],
+    return Container(
+      color: Colors.blueAccent,
+      child: SafeArea(
+        child: Scaffold(
+          body: _screens[_currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            onTap: (index) {
+              _currentIndex = index;
+              setState(() {});
+            },
+            currentIndex: _currentIndex,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_bag),
+                label: "Order",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle),
+                label: "Profile",
+              ),
+            ],
+          ),
         ),
       ),
     );

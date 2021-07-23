@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:laundry_app/const/const.dart';
 import 'package:laundry_app/const/custom_app_bar.dart';
 import 'package:laundry_app/home_%20screen/home/nearby_laundry.dart';
 
@@ -12,28 +13,33 @@ class SpecificServiceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          height: size.height,
-          width: size.width,
-          child: Column(
-            children: [
-              //
+    return Container(
+      color: Colors.blueAccent,
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            height: size.height,
+            width: size.width,
+            child: Column(
+              children: [
+                //
 
-              CustomAppBar(isbackButtonEnabled: true, title: categoryName),
+                CustomAppBar(isbackButtonEnabled: true, title: categoryName),
 
-              //
+                //
 
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 15,
-                  itemBuilder: (context, index) {
-                    return NearbyLaundryList();
-                  },
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return NearbyLaundryList(
+                        data: data[index],
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

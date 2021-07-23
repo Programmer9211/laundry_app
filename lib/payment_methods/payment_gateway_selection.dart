@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:laundry_app/Screens/login_screen.dart';
+import 'package:laundry_app/home_%20screen/home_screen.dart';
 import 'package:laundry_app/location_screen/initial_location.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
@@ -46,7 +46,7 @@ class _PaymentGatewaySelectionState extends State<PaymentGatewaySelection> {
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => LoginScreen(),
+        builder: (_) => HomeScreen(),
       ),
     );
   }

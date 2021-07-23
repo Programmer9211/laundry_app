@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:laundry_app/check_avaliblity/check_avaliblity.dart';
 import 'package:laundry_app/const/custom_app_bar.dart';
-import 'package:laundry_app/home_%20screen/booking_details/booking_details.dart';
 import 'package:laundry_app/home_%20screen/order_screen/order_screen_items.dart';
 
 class CartScreen extends StatelessWidget {
@@ -65,7 +65,9 @@ class CartScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => BookingDetails(),),
+                  MaterialPageRoute(
+                    builder: (_) => ScheduleBookingScreen(),
+                  ),
                 ),
                 child: Material(
                   elevation: 5,

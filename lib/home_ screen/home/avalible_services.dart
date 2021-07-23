@@ -34,9 +34,12 @@ class AvalibleServicesItems extends StatelessWidget {
                     horizontal: size.width / 50,
                   ),
                   child: Container(
-                    height: size.height / 7.5,
+                    height: size.height / 8,
                     width: size.width / 3,
-                    color: Color.fromRGBO(4, 41, 250, 0.58),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(4, 41, 250, 0.58),
+                      shape: BoxShape.circle,
+                    ),
                     alignment: Alignment.center,
                     child: Text(
                       "Image",

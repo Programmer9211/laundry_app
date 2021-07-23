@@ -1,5 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:laundry_app/home_%20screen/home/cart_screen/cart_screen.dart';
+import 'package:laundry_app/const/const.dart';
 
 import 'avalible_services.dart';
 import 'nearby_laundry.dart';
@@ -18,10 +20,35 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late Timer _timer;
+  PageController _controller = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _timer = Timer.periodic(Duration(seconds: 2), (timer) {
+      if (currentIndex < 4) {
+        _controller.animateToPage(
+          currentIndex + 1,
+          duration: Duration(seconds: 1),
+          curve: Curves.ease,
+        );
+      } else {
+        _controller.animateToPage(
+          0,
+          duration: Duration(seconds: 1),
+          curve: Curves.ease,
+        );
+      }
+    });
+  }
+
   int currentIndex = 0;
 
   List<bool> _isEnabled = [
     true,
+    false,
     false,
     false,
     false,
@@ -56,27 +83,12 @@ class _HomeState extends State<Home> {
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: size.width / 30),
                       child: Text(
-                        "LaxmiNagar, Sec 78, New Delhi, Haryana",
+                        "LaxmiNagar, Sec 78, New Delhi",
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: size.width / 22,
                           color: Colors.white,
                         ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width / 40),
-                    child: InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => CartScreen(),
-                        ),
-                      ),
-                      child: Icon(
-                        Icons.shopping_cart,
-                        size: size.width / 18,
-                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -90,13 +102,14 @@ class _HomeState extends State<Home> {
               height: size.height / 4,
               width: size.width,
               child: PageView.builder(
+                controller: _controller,
                 onPageChanged: (val) {
                   _isEnabled[currentIndex] = false;
                   currentIndex = val;
                   _isEnabled[val] = true;
                   setState(() {});
                 },
-                itemCount: 4,
+                itemCount: 5,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(
@@ -110,8 +123,12 @@ class _HomeState extends State<Home> {
                         height: size.height / 4,
                         width: size.width / 1.1,
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                            image: AssetImage("assets/3.png"),
+                            image: NetworkImage(
+                              data[index].imageUrl,
+                            ),
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -129,7 +146,7 @@ class _HomeState extends State<Home> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  for (int i = 0; i < 4; i++) indicator(size, _isEnabled[i]),
+                  for (int i = 0; i < 5; i++) indicator(size, _isEnabled[i]),
                 ],
               ),
             ),
@@ -188,9 +205,11 @@ class _HomeState extends State<Home> {
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: 10,
+                itemCount: data.length,
                 itemBuilder: (context, index) {
-                  return NearbyLaundryList();
+                  return NearbyLaundryList(
+                    data: data[index],
+                  );
                 },
               ),
             ),
@@ -214,5 +233,12 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _timer.cancel();
+    super.dispose();
   }
 }

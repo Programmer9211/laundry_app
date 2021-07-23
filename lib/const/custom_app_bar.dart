@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
@@ -45,6 +46,21 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
           ),
+          isbackButtonEnabled
+              ? Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width / 50),
+                  child: IconButton(
+                    onPressed: () {
+                      Share.share("Laundry Name\nPhone No. 9876543210");
+                    },
+                    icon: Icon(
+                      Icons.share,
+                      color: Colors.white,
+                      size: size.width / 15,
+                    ),
+                  ),
+                )
+              : SizedBox(),
         ],
       ),
     );
