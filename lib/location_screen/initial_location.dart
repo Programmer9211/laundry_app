@@ -8,123 +8,126 @@ class InitialLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          height: size.height,
-          width: size.width,
-          child: Column(
-            children: [
-              TopBoxForInitialLocation(
-                text: "Select\n Your Location",
-              ),
-              SizedBox(
-                height: size.height / 15,
-              ),
-              InkWell(
-                // onTap: () => showSearch(
-                //   context: context,
-                //   delegate: LocationSearch(),
-                // ),
-                child: Container(
-                  height: size.height / 20,
-                  width: size.width / 1.2,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Color.fromRGBO(30, 62, 160, 1),
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    "Enter Your Location",
-                    style: TextStyle(
-                      fontSize: size.width / 22,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey,
-                    ),
-                  ),
+    return Container(
+      color: Colors.blue,
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            height: size.height,
+            width: size.width,
+            child: Column(
+              children: [
+                TopBoxForInitialLocation(
+                  text: "Select\n Your Location",
                 ),
-              ),
-              SizedBox(
-                height: size.height / 20,
-              ),
-              Container(
-                height: size.height / 20,
-                width: size.width,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: size.height / 400,
-                        color: Colors.grey,
+                SizedBox(
+                  height: size.height / 15,
+                ),
+                InkWell(
+                  // onTap: () => showSearch(
+                  //   context: context,
+                  //   delegate: LocationSearch(),
+                  // ),
+                  child: Container(
+                    height: size.height / 20,
+                    width: size.width / 1.2,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color.fromRGBO(30, 62, 160, 1),
+                          width: 2,
+                        ),
                       ),
                     ),
-                    Text(
-                      "OR",
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      "Enter Your Location",
                       style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: size.width / 24,
+                        fontSize: size.width / 22,
                         fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: size.height / 400,
                         color: Colors.grey,
                       ),
                     ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: size.height / 20,
-              ),
-              GestureDetector(
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => HomeScreen(),
                   ),
                 ),
-                // onTap: () async {
-
-                // },
-                child: Container(
-                  height: size.height / 14,
-                  width: size.width / 1.2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 2,
-                      color: Color.fromRGBO(30, 62, 160, 1),
-                    ),
-                  ),
+                SizedBox(
+                  height: size.height / 20,
+                ),
+                Container(
+                  height: size.height / 20,
+                  width: size.width,
                   child: Row(
                     children: [
-                      SizedBox(
-                        width: size.width / 20,
-                      ),
-                      Icon(
-                        Icons.location_searching,
-                        size: size.width / 17,
-                      ),
-                      SizedBox(
-                        width: size.width / 20,
+                      Expanded(
+                        child: Container(
+                          height: size.height / 400,
+                          color: Colors.grey,
+                        ),
                       ),
                       Text(
-                        "Use Current Location",
+                        "OR",
                         style: TextStyle(
-                          fontSize: size.width / 23,
+                          color: Colors.grey,
+                          fontSize: size.width / 24,
                           fontWeight: FontWeight.w500,
                         ),
-                      )
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: size.height / 400,
+                          color: Colors.grey,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: size.height / 20,
+                ),
+                GestureDetector(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => HomeScreen(),
+                    ),
+                  ),
+                  // onTap: () async {
+
+                  // },
+                  child: Container(
+                    height: size.height / 14,
+                    width: size.width / 1.2,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        width: 2,
+                        color: Color.fromRGBO(30, 62, 160, 1),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: size.width / 20,
+                        ),
+                        Icon(
+                          Icons.location_searching,
+                          size: size.width / 17,
+                        ),
+                        SizedBox(
+                          width: size.width / 20,
+                        ),
+                        Text(
+                          "Use Current Location",
+                          style: TextStyle(
+                            fontSize: size.width / 23,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:laundry_app/const/const.dart';
+import 'package:laundry_app/home_%20screen/home/search_screen/search_scree.dart';
 
 import 'avalible_services.dart';
 import 'nearby_laundry.dart';
@@ -68,7 +69,6 @@ class _HomeState extends State<Home> {
             Container(
               height: size.height / 11,
               width: size.width,
-              color: Color.fromRGBO(4, 41, 250, 0.58),
               child: Row(
                 children: [
                   Padding(
@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
                     child: Icon(
                       Icons.location_on,
                       size: size.width / 18,
-                      color: Colors.white,
+                      color: Colors.red,
                     ),
                   ),
                   Flexible(
@@ -87,13 +87,54 @@ class _HomeState extends State<Home> {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: size.width / 22,
-                          color: Colors.white,
                         ),
                       ),
                     ),
                   ),
                 ],
               ),
+            ),
+
+            // Search Bar
+
+            InkWell(
+              onTap: () =>
+                  showSearch(context: context, delegate: SearchScreen()),
+              child: Container(
+                height: size.height / 17,
+                width: size.width / 1.1,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: Colors.black,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Search Laundries...",
+                        style: TextStyle(
+                          fontSize: size.width / 24,
+                          color: Colors.grey[600],
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Icon(
+                        Icons.search,
+                        size: size.width / 15,
+                        color: Color.fromRGBO(4, 41, 250, 0.7),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            SizedBox(
+              height: size.height / 50,
             ),
 
             //Banner View...
@@ -154,13 +195,13 @@ class _HomeState extends State<Home> {
             // Services Avalible...
 
             Container(
-              height: size.height / 18,
+              height: size.height / 19,
               width: size.width / 1.1,
               alignment: Alignment.centerLeft,
               child: Text(
-                "Avalible Services",
+                "Avalibe Services",
                 style: TextStyle(
-                  fontSize: size.width / 22,
+                  fontSize: size.width / 20,
                   color: Colors.grey[900],
                   fontWeight: FontWeight.w500,
                 ),

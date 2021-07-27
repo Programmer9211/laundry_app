@@ -90,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget tile(Size size, String text) {
+  Widget tile(Size size, String text, ) {
     return ListTile(
       onTap: () {},
       title: Text(

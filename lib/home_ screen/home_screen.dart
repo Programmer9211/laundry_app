@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 1;
+  Color color = Colors.white;
 
   @override
   void initState() {
@@ -28,13 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blueAccent,
+      color: color,
       child: SafeArea(
         child: Scaffold(
           body: _screens[_currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             onTap: (index) {
               _currentIndex = index;
+              if (_currentIndex == 1)
+                color = Colors.white;
+              else
+                color = Colors.blue;
               setState(() {});
             },
             currentIndex: _currentIndex,
