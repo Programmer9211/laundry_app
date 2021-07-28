@@ -13,80 +13,83 @@ class BookingDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          height: size.height,
-          width: size.width,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                // Back Button...
+    return Container(
+      color: Colors.redAccent,
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            height: size.height,
+            width: size.width,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // Back Button...
 
-                Padding(
-                  padding: EdgeInsets.all(size.width / 30),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: InkWell(
-                      onTap: () => Navigator.pop(context),
-                      child: Container(
-                        height: size.height / 15,
-                        width: size.height / 15,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(4, 41, 250, 0.48),
-                        ),
-                        alignment: Alignment.center,
-                        child: Icon(
-                          Icons.arrow_back,
-                          size: size.width / 14,
-                          color: Colors.white,
+                  Padding(
+                    padding: EdgeInsets.all(size.width / 30),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: InkWell(
+                        onTap: () => Navigator.pop(context),
+                        child: Container(
+                          height: size.height / 15,
+                          width: size.height / 15,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.redAccent,
+                          ),
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.arrow_back,
+                            size: size.width / 14,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
 
-                // Box 1 Address Details...
+                  // Box 1 Address Details...
 
-                BookingAddressBox(),
+                  BookingAddressBox(),
 
-                // Empty Box For Gap...
+                  // Empty Box For Gap...
 
-                SizedBox(
-                  height: size.height / 20,
-                ),
+                  SizedBox(
+                    height: size.height / 20,
+                  ),
 
-                // Box 2 Slot Details...
+                  // Box 2 Slot Details...
 
-                SlotDetailsBox(),
+                  SlotDetailsBox(),
 
-                // Empty Box For Gap...
+                  // Empty Box For Gap...
 
-                SizedBox(
-                  height: size.height / 20,
-                ),
+                  SizedBox(
+                    height: size.height / 20,
+                  ),
 
-                // Bill Details Box...
+                  // Bill Details Box...
 
-                BillDetailsBox(),
-              ],
-            ),
-          ),
-        ),
-        bottomNavigationBar: Container(
-          height: size.height / 10,
-          width: size.width,
-          alignment: Alignment.topCenter,
-          child: CustomButton(
-            text: "Confirm Booking",
-            width: 1.5,
-            function: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => PaymentGatewaySelection(),
+                  BillDetailsBox(),
+                ],
               ),
             ),
-            color: Color.fromRGBO(4, 41, 250, 0.58),
+          ),
+          bottomNavigationBar: Container(
+            height: size.height / 10,
+            width: size.width,
+            alignment: Alignment.topCenter,
+            child: CustomButton(
+              text: "Confirm Booking",
+              width: 1.5,
+              function: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => PaymentGatewaySelection(),
+                ),
+              ),
+              color: Colors.redAccent,
+            ),
           ),
         ),
       ),

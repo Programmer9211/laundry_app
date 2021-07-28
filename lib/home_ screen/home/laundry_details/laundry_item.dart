@@ -28,7 +28,7 @@ class LaundryItem extends StatelessWidget {
                 width: size.width / 4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromRGBO(4, 41, 250, 0.58),
+                  color: Colors.redAccent,
                 ),
                 alignment: Alignment.center,
                 child: Text(
@@ -74,7 +74,7 @@ class LaundryItem extends StatelessWidget {
                             width: size.height / 30,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color.fromRGBO(4, 41, 250, 0.58),
+                              color: Colors.redAccent,
                             ),
                             alignment: Alignment.topCenter,
                             child: Text(
@@ -102,7 +102,7 @@ class LaundryItem extends StatelessWidget {
                             width: size.height / 30,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color.fromRGBO(4, 41, 250, 0.58),
+                              color: Colors.redAccent,
                             ),
                             alignment: Alignment.center,
                             child: Icon(

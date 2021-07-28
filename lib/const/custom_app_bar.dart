@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget {
     return Container(
       height: size.height / 11,
       width: size.width,
-      color: Color.fromRGBO(4, 41, 250, 0.58),
+      color: Colors.redAccent,
       alignment: Alignment.centerLeft,
       child: Row(
         children: [

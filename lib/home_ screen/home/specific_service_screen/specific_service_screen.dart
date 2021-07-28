@@ -14,7 +14,7 @@ class SpecificServiceScreen extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return Container(
-      color: Colors.blueAccent,
+      color: Colors.redAccent,
       child: SafeArea(
         child: Scaffold(
           body: Container(

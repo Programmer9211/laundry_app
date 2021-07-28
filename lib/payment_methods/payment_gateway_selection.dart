@@ -63,45 +63,48 @@ class _PaymentGatewaySelectionState extends State<PaymentGatewaySelection> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          height: size.height,
-          width: size.width,
-          child: Column(
-            children: [
-              TopBoxForInitialLocation(text: "Select a\n Payment Method"),
+    return Container(
+      color: Colors.redAccent,
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            height: size.height,
+            width: size.width,
+            child: Column(
+              children: [
+                TopBoxForInitialLocation(text: "Select a\n Payment Method"),
 
-              //Sized Box For Gap...
+                //Sized Box For Gap...
 
-              SizedBox(
-                height: size.height / 15,
-              ),
+                SizedBox(
+                  height: size.height / 15,
+                ),
 
-              //
+                //
 
-              GatewayBoxes(
-                text: "Cash Payment",
-                imageUrl: "",
-                function: () {},
-              ),
+                GatewayBoxes(
+                  text: "Cash Payment",
+                  imageUrl: "",
+                  function: () {},
+                ),
 
-              //
+                //
 
-              SizedBox(
-                height: size.height / 20,
-              ),
+                SizedBox(
+                  height: size.height / 20,
+                ),
 
-              //
+                //
 
-              GatewayBoxes(
-                text: "Razor Pay",
-                imageUrl: "",
-                function: () {
-                  openRazorPayPortal(500);
-                },
-              ),
-            ],
+                GatewayBoxes(
+                  text: "Razor Pay",
+                  imageUrl: "",
+                  function: () {
+                    openRazorPayPortal(500);
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

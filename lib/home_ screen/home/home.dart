@@ -14,6 +14,11 @@ class Home extends StatefulWidget {
     AvalibleServicesItemsData(text: "Stream Press", imageUrl: ""),
     AvalibleServicesItemsData(text: "Dry Cleaning", imageUrl: ""),
     AvalibleServicesItemsData(text: "Commercial Laundry", imageUrl: ""),
+    AvalibleServicesItemsData(text: "Service 4", imageUrl: ""),
+    AvalibleServicesItemsData(text: "Service 5", imageUrl: ""),
+    AvalibleServicesItemsData(text: "Service 6", imageUrl: ""),
+    AvalibleServicesItemsData(text: "Service 7", imageUrl: ""),
+    AvalibleServicesItemsData(text: "Service 8", imageUrl: ""),
   ];
 
   @override
@@ -21,28 +26,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late Timer _timer;
   PageController _controller = PageController();
+  bool _isExpanded = false;
 
   @override
   void initState() {
     super.initState();
 
-    _timer = Timer.periodic(Duration(seconds: 2), (timer) {
-      if (currentIndex < 4) {
-        _controller.animateToPage(
-          currentIndex + 1,
-          duration: Duration(seconds: 1),
-          curve: Curves.ease,
-        );
-      } else {
-        _controller.animateToPage(
-          0,
-          duration: Duration(seconds: 1),
-          curve: Curves.ease,
-        );
-      }
-    });
+    // _timer = Timer.periodic(Duration(seconds: 2), (timer) {
+    //   if (currentIndex < 4) {
+    //     _controller.animateToPage(
+    //       currentIndex + 1,
+    //       duration: Duration(seconds: 1),
+    //       curve: Curves.ease,
+    //     );
+    //   } else {
+    //     _controller.animateToPage(
+    //       0,
+    //       duration: Duration(seconds: 1),
+    //       curve: Curves.ease,
+    //     );
+    //   }
+    // });
   }
 
   int currentIndex = 0;
@@ -60,6 +65,8 @@ class _HomeState extends State<Home> {
     final Size size = MediaQuery.of(context).size;
 
     return Container(
+      height: size.height,
+      width: size.width,
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -110,22 +117,25 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  padding: EdgeInsets.symmetric(horizontal: size.width / 30),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Search Laundries...",
-                        style: TextStyle(
-                          fontSize: size.width / 24,
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
                       Icon(
                         Icons.search,
                         size: size.width / 15,
-                        color: Color.fromRGBO(4, 41, 250, 0.7),
+                        color: Colors.redAccent,
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size.width / 30),
+                        child: Text(
+                          "Search Laundries...",
+                          style: TextStyle(
+                            fontSize: size.width / 24,
+                            color: Colors.grey[600],
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -137,60 +147,80 @@ class _HomeState extends State<Home> {
               height: size.height / 50,
             ),
 
+            // Card View Screen...
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Cards(),
+                Cards(),
+              ],
+            ),
+
+            SizedBox(
+              height: size.height / 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Cards(),
+                Cards(),
+              ],
+            ),
             //Banner View...
 
-            Container(
-              height: size.height / 4,
-              width: size.width,
-              child: PageView.builder(
-                controller: _controller,
-                onPageChanged: (val) {
-                  _isEnabled[currentIndex] = false;
-                  currentIndex = val;
-                  _isEnabled[val] = true;
-                  setState(() {});
-                },
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: size.width / 35,
-                      vertical: size.width / 45,
-                    ),
-                    child: Material(
-                      elevation: 5,
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        height: size.height / 4,
-                        width: size.width / 1.1,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              data[index].imageUrl,
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+            // Container(
+            //   height: size.height / 4,
+            //   width: size.width,
+            //   child: PageView.builder(
+            //     controller: _controller,
+            //     onPageChanged: (val) {
+            //       _isEnabled[currentIndex] = false;
+            //       currentIndex = val;
+            //       _isEnabled[val] = true;
+            //       setState(() {});
+            //     },
+            //     itemCount: 5,
+            //     itemBuilder: (context, index) {
+            //       return Padding(
+            //         padding: EdgeInsets.symmetric(
+            //           horizontal: size.width / 35,
+            //           vertical: size.width / 45,
+            //         ),
+            //         child: Material(
+            //           elevation: 5,
+            //           borderRadius: BorderRadius.circular(10),
+            //           child: Container(
+            //             height: size.height / 4,
+            //             width: size.width / 1.1,
+            //             decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(10),
+            //               image: DecorationImage(
+            //                 image: NetworkImage(
+            //                   data[index].imageUrl,
+            //                 ),
+            //                 fit: BoxFit.cover,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // ),
 
-            //Build Indicator...
+            // //Build Indicator...
 
-            Container(
-              height: size.height / 25,
-              width: size.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for (int i = 0; i < 5; i++) indicator(size, _isEnabled[i]),
-                ],
-              ),
-            ),
+            // Container(
+            //   height: size.height / 25,
+            //   width: size.width,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: [
+            //       for (int i = 0; i < 5; i++) indicator(size, _isEnabled[i]),
+            //     ],
+            //   ),
+            // ),
 
             // Services Avalible...
 
@@ -199,7 +229,7 @@ class _HomeState extends State<Home> {
               width: size.width / 1.1,
               alignment: Alignment.centerLeft,
               child: Text(
-                "Avalibe Services",
+                "Available Services",
                 style: TextStyle(
                   fontSize: size.width / 20,
                   color: Colors.grey[900],
@@ -210,17 +240,60 @@ class _HomeState extends State<Home> {
 
             // List View Builder...
 
-            Container(
-              height: size.height / 4.6,
-              width: size.width,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
+            Flexible(
+              child: GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: _isExpanded ? Home.data.length : 4,
                 itemBuilder: (context, index) {
                   return AvalibleServicesItems(
                     data: Home.data[index],
                   );
                 },
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 0,
+                  childAspectRatio: 1.28,
+                ),
+              ),
+            ),
+
+            // View More...
+
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _isExpanded = !_isExpanded;
+                });
+              },
+              child: Container(
+                height: size.height / 25,
+                width: size.width / 3.8,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(width: 1),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      _isExpanded ? "View Less" : "View More",
+                      style: TextStyle(
+                        fontSize: size.width / 26,
+                      ),
+                    ),
+                    _isExpanded
+                        ? Icon(
+                            Icons.arrow_drop_up,
+                            size: size.width / 18,
+                          )
+                        : Icon(
+                            Icons.arrow_drop_down,
+                            size: size.width / 18,
+                          ),
+                  ],
+                ),
               ),
             ),
 
@@ -279,7 +352,25 @@ class _HomeState extends State<Home> {
   @override
   void dispose() {
     _controller.dispose();
-    _timer.cancel();
+    //_timer.cancel();
     super.dispose();
+  }
+}
+
+class Cards extends StatelessWidget {
+  const Cards({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
+    return Container(
+      height: size.height / 5.8,
+      width: size.width / 2.3,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.redAccent,
+      ),
+    );
   }
 }

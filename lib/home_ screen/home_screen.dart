@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:laundry_app/const/empty.dart';
+import 'package:laundry_app/home_%20screen/Nearby_laundries.dart';
+import 'package:laundry_app/home_%20screen/home/cart_screen/cart_screen.dart';
 
 import 'home/home.dart';
-import 'order_screen/order_screen.dart';
-import 'profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 1;
+  int _currentIndex = 0;
   Color color = Colors.white;
 
   @override
@@ -21,15 +22,16 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   static const List<Widget> _screens = [
-    OrderScreen(),
     Home(),
-    ProfileScreen(),
+    NearbyLaundries(),
+    CartScreen(),
+    Empty(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color,
+      color: Colors.redAccent,
       child: SafeArea(
         child: Scaffold(
           body: _screens[_currentIndex],
@@ -43,18 +45,24 @@ class _HomeScreenState extends State<HomeScreen> {
               setState(() {});
             },
             currentIndex: _currentIndex,
+            selectedItemColor: Colors.redAccent,
+            unselectedItemColor: Colors.black,
             items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag),
-                label: "Order",
-              ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: "Home",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle),
-                label: "Profile",
+                icon: Icon(Icons.shopping_bag),
+                label: "Laundries",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart),
+                label: "Cart",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.food_bank),
+                label: "Chat",
               ),
             ],
           ),

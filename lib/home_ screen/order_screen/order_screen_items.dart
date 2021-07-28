@@ -32,7 +32,7 @@ class OrderListItems extends StatelessWidget {
                       topLeft: Radius.circular(5),
                       bottomLeft: Radius.circular(5),
                     ),
-                    color: Color.fromRGBO(4, 41, 250, 0.58),
+                    color: Colors.redAccent,
                   ),
                   alignment: Alignment.center,
                   child: Text(

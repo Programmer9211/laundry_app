@@ -15,7 +15,22 @@ class OrderScreen extends StatelessWidget {
       width: size.width,
       child: Column(
         children: [
-          CustomAppBar(isbackButtonEnabled: false, title: "Orders"),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                vertical: size.height / 50,
+                horizontal: size.width / 30,
+              ),
+              child: Text(
+                "Your Orders",
+                style: TextStyle(
+                  fontSize: size.width / 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: Container(
               child: ListView.builder(

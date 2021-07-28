@@ -60,13 +60,40 @@ class _LaundryDetailsState extends State<LaundryDetails> {
     final Size size = MediaQuery.of(context).size;
 
     return Container(
-      color: Colors.blueAccent,
+      color: Colors.redAccent,
       child: SafeArea(
         child: Scaffold(
           appBar: PreferredSize(
-              child: CustomAppBar(
-                  isbackButtonEnabled: true, title: "Laundry Name"),
-              preferredSize: size),
+            child: Container(
+              height: size.height / 11,
+              width: size.width,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: size.width / 40),
+                    child: Icon(
+                      Icons.location_on,
+                      size: size.width / 18,
+                      color: Colors.red,
+                    ),
+                  ),
+                  Flexible(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: size.width / 30),
+                      child: Text(
+                        "LaxmiNagar, Sec 78, New Delhi",
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: size.width / 22,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            preferredSize: size,
+          ),
           body: Container(
             height: size.height,
             width: size.width,
@@ -313,17 +340,13 @@ class _LaundryDetailsState extends State<LaundryDetails> {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: isSelected[index]
-                  ? Color.fromRGBO(4, 41, 250, 0.58)
-                  : Colors.white,
+              color: isSelected[index] ? Colors.redAccent : Colors.white,
             ),
             alignment: Alignment.center,
             child: Text(
               text,
               style: TextStyle(
-                  color: isSelect
-                      ? Colors.white
-                      : Color.fromRGBO(4, 41, 250, 0.58),
+                  color: isSelect ? Colors.white : Colors.redAccent,
                   fontSize: size.width / 25,
                   fontWeight: FontWeight.w500),
             ),

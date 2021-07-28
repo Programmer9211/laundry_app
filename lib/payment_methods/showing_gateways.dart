@@ -25,7 +25,7 @@ class GatewayBoxes extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(
               width: 2,
-              color: Color.fromRGBO(4, 41, 250, 0.58),
+              color: Colors.redAccent,
             ),
             borderRadius: BorderRadius.circular(10),
           ),
@@ -44,7 +44,7 @@ class GatewayBoxes extends StatelessWidget {
                 style: TextStyle(
                   fontSize: size.width / 17,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromRGBO(4, 41, 250, 0.58),
+                  color: Colors.redAccent,
                 ),
               ),
             ],

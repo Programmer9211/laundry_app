@@ -9,7 +9,7 @@ class InitialLocation extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return Container(
-      color: Colors.blue,
+      color: Colors.redAccent,
       child: SafeArea(
         child: Scaffold(
           body: Container(
@@ -100,7 +100,7 @@ class InitialLocation extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         width: 2,
-                        color: Color.fromRGBO(30, 62, 160, 1),
+                        color: Colors.redAccent,
                       ),
                     ),
                     child: Row(

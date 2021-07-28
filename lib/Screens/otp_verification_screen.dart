@@ -18,7 +18,7 @@ class OTPVerification extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return Container(
-      color: Colors.blue,
+      color: Colors.redAccent,
       child: SafeArea(
         child: Scaffold(
           body: Container(

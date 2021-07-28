@@ -30,131 +30,134 @@ class _ScheduleBookingScreenState extends State<ScheduleBookingScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          height: size.height,
-          width: size.width,
-          child: Column(
-            children: [
-              Container(
-                height: size.height / 11,
-                width: size.width,
-                color: Color.fromRGBO(4, 41, 250, 0.58),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: size.height / 80,
-                    ),
-                    Container(
-                      height: size.height / 20,
-                      width: size.width / 1.1,
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.arrow_back,
-                            size: size.width / 16,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: size.width / 30,
-                          ),
-                          Text(
-                            "App Name",
-                            style: TextStyle(
+    return Container(
+      color: Colors.redAccent,
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            height: size.height,
+            width: size.width,
+            child: Column(
+              children: [
+                Container(
+                  height: size.height / 12,
+                  width: size.width,
+                  color: Colors.redAccent,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: size.height / 80,
+                      ),
+                      Container(
+                        height: size.height / 20,
+                        width: size.width / 1.1,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              size: size.width / 16,
                               color: Colors.white,
-                              fontSize: size.width / 18,
-                              fontWeight: FontWeight.w500,
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: size.width / 30,
+                            ),
+                            Text(
+                              "App Name",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: size.width / 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
 
-              // Sized Box...
+                // Sized Box...
 
-              SizedBox(
-                height: size.height / 10,
-              ),
-
-              // Line...
-
-              Container(
-                height: size.height / 20,
-                width: size.width / 1.07,
-                child: Row(
-                  children: [
-                    Text(
-                      "Book a Slot",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: size.width / 20,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: size.width / 60),
-                      child: Container(
-                        height: size.height / 400,
-                        width: size.width / 1.6,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
+                SizedBox(
+                  height: size.height / 10,
                 ),
-              ),
 
-              // Sized Box...
+                // Line...
 
-              SizedBox(
-                height: size.height / 20,
-              ),
-
-              // Schedule Button...
-
-              InkWell(
-                onTap: () => showCalender(),
-                child: Center(
-                  child: Container(
-                    height: size.height / 10,
-                    width: size.width / 1.3,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        width: 2,
-                        color: Color.fromRGBO(4, 41, 250, 0.58),
+                Container(
+                  height: size.height / 20,
+                  width: size.width / 1.07,
+                  child: Row(
+                    children: [
+                      Text(
+                        "Book a Slot",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: size.width / 20,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Schedule Time For Booking",
-                      style: TextStyle(
-                        fontSize: size.width / 22,
-                        fontWeight: FontWeight.w500,
+                      Padding(
+                        padding: EdgeInsets.only(left: size.width / 60),
+                        child: Container(
+                          height: size.height / 400,
+                          width: size.width / 1.6,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Sized Box...
+
+                SizedBox(
+                  height: size.height / 20,
+                ),
+
+                // Schedule Button...
+
+                InkWell(
+                  onTap: () => showCalender(),
+                  child: Center(
+                    child: Container(
+                      height: size.height / 10,
+                      width: size.width / 1.3,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 2,
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Schedule Time For Booking",
+                        style: TextStyle(
+                          fontSize: size.width / 22,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
 
-              SizedBox(
-                height: size.height / 8,
-              ),
-
-              // Confitmation Button...
-
-              CustomButton(
-                text: "Confirm",
-                color: Color.fromRGBO(4, 41, 250, 0.58),
-                function: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => BookingDetails()),
+                SizedBox(
+                  height: size.height / 8,
                 ),
-                width: 2,
-              ),
-            ],
+
+                // Confitmation Button...
+
+                CustomButton(
+                  text: "Confirm",
+                  color: Colors.redAccent,
+                  function: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => BookingDetails()),
+                  ),
+                  width: 2,
+                ),
+              ],
+            ),
           ),
         ),
       ),
