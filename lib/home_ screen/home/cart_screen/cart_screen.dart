@@ -4,6 +4,8 @@ import 'package:laundry_app/const/const.dart';
 import 'package:laundry_app/home_%20screen/home/laundry_details/laundry_item.dart';
 import 'package:laundry_app/home_%20screen/home/laundry_details/launndry_details.dart';
 
+import '../../profile_screen.dart';
+
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
 
@@ -45,11 +47,19 @@ class CartScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width / 50),
-                    child: Icon(
-                      Icons.account_circle,
-                      size: size.width / 16,
+                  InkWell(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => ProfileScreen(),
+                      ),
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width / 30),
+                      child: Icon(
+                        Icons.account_circle,
+                        size: size.width / 16,
+                      ),
                     ),
                   ),
                 ],
@@ -199,7 +209,10 @@ class CartScreen extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    return LaundryItem();
+                    return LaundryItem(
+                      add: () {},
+                      sub: () {},
+                    );
                   },
                 ),
               ),

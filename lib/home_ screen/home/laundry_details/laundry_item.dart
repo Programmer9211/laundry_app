@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LaundryItem extends StatelessWidget {
-  const LaundryItem({Key? key}) : super(key: key);
+  final Function add, sub;
+
+  const LaundryItem({required this.add, required this.sub, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -69,20 +72,23 @@ class LaundryItem extends StatelessWidget {
                       width: size.width / 4.8,
                       child: Row(
                         children: [
-                          Container(
-                            height: size.height / 30,
-                            width: size.height / 30,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.redAccent,
-                            ),
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "__",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: size.width / 30,
-                                fontWeight: FontWeight.bold,
+                          InkWell(
+                            onTap: () => sub(),
+                            child: Container(
+                              height: size.height / 30,
+                              width: size.height / 30,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.redAccent,
+                              ),
+                              alignment: Alignment.topCenter,
+                              child: Text(
+                                "__",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: size.width / 30,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -97,18 +103,21 @@ class LaundryItem extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            height: size.height / 30,
-                            width: size.height / 30,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.redAccent,
-                            ),
-                            alignment: Alignment.center,
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: size.width / 20,
+                          InkWell(
+                            onTap: () => add(),
+                            child: Container(
+                              height: size.height / 30,
+                              width: size.height / 30,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.redAccent,
+                              ),
+                              alignment: Alignment.center,
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: size.width / 20,
+                              ),
                             ),
                           ),
                         ],

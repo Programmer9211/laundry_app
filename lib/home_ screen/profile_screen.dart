@@ -9,90 +9,106 @@ class ProfileScreen extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height,
-      width: size.width,
-      child: Column(
-        children: [
-          // App Bar
-
-          CustomAppBar(isbackButtonEnabled: false, title: "Profile"),
-
-          //
-
-          SizedBox(
-            height: size.height / 20,
-          ),
-
-          Container(
-            height: size.height / 5.5,
-            width: size.height / 5.5,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Color.fromRGBO(4, 41, 250, 0.58),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              "U",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: size.width / 5,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-          ),
-
-          SizedBox(
-            height: size.height / 40,
-          ),
-
-          Container(
-            height: size.height / 20,
+      color: Colors.redAccent,
+      child: SafeArea(
+        child: Scaffold(
+          body: Container(
+            height: size.height,
             width: size.width,
-            alignment: Alignment.center,
-            child: Text(
-              "Username",
-              style: TextStyle(
-                fontSize: size.width / 15,
-                fontWeight: FontWeight.w500,
-              ),
+            child: Column(
+              children: [
+                // App Bar
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: BackButton(),
+                ),
+
+                //
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: size.width / 22),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Username",
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: size.width / 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: size.height / 8,
+                        width: size.height / 8,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color.fromRGBO(4, 41, 250, 0.58),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "U",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: size.width / 10,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(
+                  height: size.height / 40,
+                ),
+
+                SizedBox(
+                  height: size.height / 20,
+                ),
+
+                header(size, "Food Orders"),
+
+                tile(size, "Your Orders", Icons.add_shopping_cart),
+
+                tile(size, "Food Orders", Icons.add_comment),
+
+                tile(size, "Adress Book", Icons.book),
+
+                tile(size, "Online Order Help", Icons.help_center),
+
+                // tile(size, "Name: Username"),
+              ],
             ),
           ),
-
-          SizedBox(
-            height: size.height / 20,
-          ),
-
-          header(size, "Name"),
-
-          tile(size, "Username"),
-
-          header(size, "Phone No."),
-
-          tile(size, "9876543210"),
-
-          // tile(size, "Name: Username"),
-        ],
+        ),
       ),
     );
   }
 
   Widget header(Size size, String title) {
     return Container(
-      height: size.height / 40,
+      height: size.height / 25,
       width: size.width / 1.05,
-      alignment: Alignment.bottomLeft,
+      alignment: Alignment.centerLeft,
       child: Text(
         title,
         style: TextStyle(
-          fontSize: size.width / 26,
+          fontSize: size.width / 23,
         ),
       ),
     );
   }
 
-  Widget tile(Size size, String text, ) {
+  Widget tile(Size size, String text, IconData icon) {
     return ListTile(
       onTap: () {},
+      leading: Icon(icon),
       title: Text(
         text,
         style: TextStyle(
@@ -100,7 +116,6 @@ class ProfileScreen extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      trailing: Icon(Icons.edit),
     );
   }
 }

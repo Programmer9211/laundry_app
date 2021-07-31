@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:laundry_app/const/const.dart';
 import 'package:laundry_app/home_%20screen/home/search_screen/search_scree.dart';
+import 'package:laundry_app/home_%20screen/profile_screen.dart';
 
 import 'avalible_services.dart';
 import 'nearby_laundry.dart';
@@ -60,6 +61,15 @@ class _HomeState extends State<Home> {
     false,
   ];
 
+  void sheet() {
+    showBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -86,15 +96,34 @@ class _HomeState extends State<Home> {
                       color: Colors.red,
                     ),
                   ),
-                  Flexible(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: size.width / 30),
-                      child: Text(
-                        "LaxmiNagar, Sec 78, New Delhi",
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: size.width / 22,
+                  InkWell(
+                    onTap: () => sheet(),
+                    child: Expanded(
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: size.width / 30),
+                        child: Text(
+                          "LaxmiNagar, Sec 78, New Delhi",
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: size.width / 22,
+                          ),
                         ),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => ProfileScreen(),
+                      ),
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: size.width / 30),
+                      child: Icon(
+                        Icons.account_circle,
+                        size: size.width / 16,
                       ),
                     ),
                   ),
@@ -107,37 +136,39 @@ class _HomeState extends State<Home> {
             InkWell(
               onTap: () =>
                   showSearch(context: context, delegate: SearchScreen()),
-              child: Container(
-                height: size.height / 17,
-                width: size.width / 1.1,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.black,
+              child: Material(
+                elevation: 6,
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  height: size.height / 15,
+                  width: size.width / 1.1,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey, width: 1.5),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width / 30),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.search,
-                        size: size.width / 15,
-                        color: Colors.redAccent,
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: size.width / 30),
-                        child: Text(
-                          "Search Laundries...",
-                          style: TextStyle(
-                            fontSize: size.width / 24,
-                            color: Colors.grey[600],
-                            fontWeight: FontWeight.w500,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: size.width / 30),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.search,
+                          size: size.width / 15,
+                          color: Colors.redAccent,
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: size.width / 30),
+                          child: Text(
+                            "Search Laundries...",
+                            style: TextStyle(
+                              fontSize: size.width / 24,
+                              color: Colors.grey[600],
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -244,55 +275,57 @@ class _HomeState extends State<Home> {
               child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: _isExpanded ? Home.data.length : 4,
+                itemCount: _isExpanded ? Home.data.length : 3,
                 itemBuilder: (context, index) {
                   return AvalibleServicesItems(
                     data: Home.data[index],
                   );
                 },
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                  crossAxisCount: 3,
                   mainAxisSpacing: 0,
                   crossAxisSpacing: 0,
-                  childAspectRatio: 1.28,
                 ),
               ),
             ),
 
             // View More...
 
-            InkWell(
-              onTap: () {
-                setState(() {
-                  _isExpanded = !_isExpanded;
-                });
-              },
-              child: Container(
-                height: size.height / 25,
-                width: size.width / 3.8,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(width: 1),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      _isExpanded ? "View Less" : "View More",
-                      style: TextStyle(
-                        fontSize: size.width / 26,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: size.height / 40),
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    _isExpanded = !_isExpanded;
+                  });
+                },
+                child: Container(
+                  height: size.height / 25,
+                  width: size.width / 3.8,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(width: 1),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        _isExpanded ? "View Less" : "View More",
+                        style: TextStyle(
+                          fontSize: size.width / 26,
+                        ),
                       ),
-                    ),
-                    _isExpanded
-                        ? Icon(
-                            Icons.arrow_drop_up,
-                            size: size.width / 18,
-                          )
-                        : Icon(
-                            Icons.arrow_drop_down,
-                            size: size.width / 18,
-                          ),
-                  ],
+                      _isExpanded
+                          ? Icon(
+                              Icons.arrow_drop_up,
+                              size: size.width / 18,
+                            )
+                          : Icon(
+                              Icons.arrow_drop_down,
+                              size: size.width / 18,
+                            ),
+                    ],
+                  ),
                 ),
               ),
             ),
