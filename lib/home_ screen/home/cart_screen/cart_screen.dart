@@ -14,7 +14,7 @@ class CartScreen extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height,
+      height: size.height / 1.2,
       width: size.width,
       child: SingleChildScrollView(
         child: Column(
@@ -23,48 +23,58 @@ class CartScreen extends StatelessWidget {
             //App Bar..
 
             Container(
-              height: size.height / 11,
-              width: size.width,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width / 40),
-                    child: Icon(
-                      Icons.location_on,
-                      size: size.width / 18,
-                      color: Colors.red,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: size.width / 30),
-                      child: Text(
-                        "LaxmiNagar, Sec 78, New Delhi",
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: size.width / 22,
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => ProfileScreen(),
-                      ),
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: size.width / 30),
-                      child: Icon(
-                        Icons.account_circle,
-                        size: size.width / 16,
-                      ),
-                    ),
-                  ),
-                ],
+              height: size.height / 15,
+              width: size.width / 1.1,
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.close),
               ),
             ),
+
+            // Container(
+            //   height: size.height / 11,
+            //   width: size.width,
+            //   child: Row(
+            //     children: [
+            //       Padding(
+            //         padding: EdgeInsets.symmetric(horizontal: size.width / 40),
+            //         child: Icon(
+            //           Icons.location_on,
+            //           size: size.width / 18,
+            //           color: Colors.red,
+            //         ),
+            //       ),
+            //       Expanded(
+            //         child: Container(
+            //           padding: EdgeInsets.symmetric(vertical: size.width / 30),
+            //           child: Text(
+            //             "LaxmiNagar, Sec 78, New Delhi",
+            //             overflow: TextOverflow.ellipsis,
+            //             style: TextStyle(
+            //               fontSize: size.width / 22,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       InkWell(
+            //         onTap: () => Navigator.of(context).push(
+            //           MaterialPageRoute(
+            //             builder: (_) => ProfileScreen(),
+            //           ),
+            //         ),
+            //         child: Padding(
+            //           padding:
+            //               EdgeInsets.symmetric(horizontal: size.width / 30),
+            //           child: Icon(
+            //             Icons.account_circle,
+            //             size: size.width / 16,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
 
             InkWell(
               onTap: () => Navigator.of(context).push(

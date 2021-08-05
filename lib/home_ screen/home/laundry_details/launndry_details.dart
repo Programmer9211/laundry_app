@@ -17,7 +17,7 @@ class LaundryDetails extends StatefulWidget {
 }
 
 class _LaundryDetailsState extends State<LaundryDetails> {
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
 
   late Timer _time;
   int _currentIndex = 0;
@@ -27,18 +27,20 @@ class _LaundryDetailsState extends State<LaundryDetails> {
     super.initState();
 
     _time = Timer.periodic(Duration(seconds: 2), (timer) {
-      if (currentIndex < 3) {
-        _controller.animateToPage(
-          currentIndex + 1,
-          duration: Duration(seconds: 1),
-          curve: Curves.ease,
-        );
-      } else {
-        _controller.animateToPage(
-          0,
-          duration: Duration(seconds: 1),
-          curve: Curves.ease,
-        );
+      if (currentIndex != 1) {
+        if (currentIndex < 3) {
+          _controller.animateToPage(
+            currentIndex + 1,
+            duration: Duration(seconds: 1),
+            curve: Curves.ease,
+          );
+        } else {
+          _controller.animateToPage(
+            0,
+            duration: Duration(seconds: 1),
+            curve: Curves.ease,
+          );
+        }
       }
     });
   }
@@ -379,8 +381,8 @@ class _LaundryDetailsState extends State<LaundryDetails> {
 
   @override
   void dispose() {
-    // _controller.dispose();
     _time.cancel();
+    _controller.dispose();
     super.dispose();
   }
 }

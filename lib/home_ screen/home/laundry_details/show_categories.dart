@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:laundry_app/check_avaliblity/check_avaliblity.dart';
 import 'package:laundry_app/const/custom_button.dart';
+import 'package:laundry_app/home_%20screen/home/cart_screen/cart_screen.dart';
 import 'package:laundry_app/home_%20screen/home/search_screen/search_scree.dart';
 import 'package:laundry_app/home_%20screen/profile_screen.dart';
 
@@ -15,12 +17,36 @@ class ShowCategories extends StatefulWidget {
 }
 
 class _ShowCategoriesState extends State<ShowCategories> {
-  List<bool> _isEnabled = [
-    true,
-    false,
-    false,
-    false,
-  ];
+  final ScrollController _controller = ScrollController();
+
+  bool isDown = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      if (_controller.position.userScrollDirection == ScrollDirection.reverse) {
+        if (isDown) {
+        } else {
+          isDown = true;
+          setState(() {});
+        }
+      } else if (_controller.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        if (isDown) {
+          isDown = false;
+          setState(() {});
+        } else {}
+      }
+    });
+  }
+
+  // List<bool> _isEnabled = [
+  //   true,
+  //   false,
+  //   false,
+  //   false,
+  // ];
 
   List<bool> isSelected = [
     true,
@@ -43,6 +69,14 @@ class _ShowCategoriesState extends State<ShowCategories> {
     });
   }
 
+  void showSheet() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => CartScreen(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -54,177 +88,188 @@ class _ShowCategoriesState extends State<ShowCategories> {
           body: Container(
             height: size.height,
             width: size.width,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    height: size.height / 10,
-                    width: size.width / 1.1,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  height: size.height / 10,
+                  width: size.width / 1.1,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: () => widget.function(),
+                        icon: Icon(
+                          Icons.arrow_back,
+                          size: size.width / 14,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => ProfileScreen(),
+                          ),
+                        ),
+                        icon: Icon(
+                          Icons.account_circle,
+                          size: size.width / 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                InkWell(
+                  onTap: () => showSearch(
+                    context: context,
+                    delegate: SearchScreen(),
+                  ),
+                  child: Material(
+                    elevation: 6,
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      height: size.height / 15,
+                      width: size.width / 1.1,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border:
+                            Border.all(color: Colors.grey[400]!, width: 2.2),
+                      ),
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size.width / 30),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.search,
+                              size: size.width / 15,
+                              color: Colors.redAccent,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: size.width / 30),
+                              child: Text(
+                                "Search Laundries...",
+                                style: TextStyle(
+                                  fontSize: size.width / 24,
+                                  color: Colors.grey[600],
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: size.height / 50),
+                  child: Container(
+                    height: size.height / 16,
+                    width: size.width,
+                    // decoration: BoxDecoration(
+                    //   //borderRadius: BorderRadius.circular(15),
+                    //   color: Color.fromRGBO(4, 41, 250, 0.58),
+                    // ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton(
-                          onPressed: () => widget.function(),
-                          icon: Icon(
-                            Icons.arrow_back,
-                            size: size.width / 14,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => ProfileScreen(),
-                            ),
-                          ),
-                          icon: Icon(
-                            Icons.account_circle,
-                            size: size.width / 14,
-                          ),
-                        ),
+                        button(size, "Men", isSelected[0], 0),
+                        button(size, "Women", isSelected[1], 1),
+                        button(size, "Others", isSelected[2], 2),
+                        button(size, "Reviews", isSelected[3], 3),
                       ],
                     ),
                   ),
-                  InkWell(
-                    onTap: () => showSearch(
-                      context: context,
-                      delegate: SearchScreen(),
-                    ),
-                    child: Material(
-                      elevation: 6,
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        height: size.height / 15,
-                        width: size.width / 1.1,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.grey, width: 1.5),
-                        ),
-                        child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: size.width / 30),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.search,
-                                size: size.width / 15,
-                                color: Colors.redAccent,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: size.width / 30),
-                                child: Text(
-                                  "Search Laundries...",
-                                  style: TextStyle(
-                                    fontSize: size.width / 24,
-                                    color: Colors.grey[600],
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: size.height / 50),
-                    child: Container(
-                      height: size.height / 16,
-                      width: size.width,
-                      // decoration: BoxDecoration(
-                      //   //borderRadius: BorderRadius.circular(15),
-                      //   color: Color.fromRGBO(4, 41, 250, 0.58),
-                      // ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          button(size, "Men", isSelected[0], 0),
-                          button(size, "Women", isSelected[1], 1),
-                          button(size, "Others", isSelected[2], 2),
-                          button(size, "Reviews", isSelected[3], 3),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    child: Builder(
-                      builder: (context) {
-                        if (isSelected[0]) {
-                          return ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: 20,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return LaundryItem(
-                                add: () => add(),
-                                sub: () => sub(),
-                              );
-                            },
-                          );
-                        } else if (isSelected[1]) {
-                          return ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: 20,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return LaundryItem(
-                                add: () => add(),
-                                sub: () => sub(),
-                              );
-                            },
-                          );
-                        } else if (isSelected[2]) {
-                          return ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: 20,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return LaundryItem(
-                                add: () => add(),
-                                sub: () => sub(),
-                              );
-                            },
-                          );
-                        } else {
-                          return Container(
-                            height: size.height / 2,
-                            width: size.width,
-                            alignment: Alignment.center,
-                            child: Text(
-                              "No Reviews Yet!",
-                              style: TextStyle(
-                                fontSize: size.width / 18,
-                                fontWeight: FontWeight.w500,
-                              ),
+                ),
+                Expanded(
+                  child: Builder(
+                    builder: (context) {
+                      if (isSelected[0]) {
+                        return ListView.builder(
+                          controller: _controller,
+                          //physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 20,
+                          //shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return LaundryItem(
+                              add: () => add(),
+                              sub: () => sub(),
+                            );
+                          },
+                        );
+                      } else if (isSelected[1]) {
+                        return ListView.builder(
+                          // physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 20,
+                          // shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return LaundryItem(
+                              add: () => add(),
+                              sub: () => sub(),
+                            );
+                          },
+                        );
+                      } else if (isSelected[2]) {
+                        return ListView.builder(
+                          // physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 20,
+                          // shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return LaundryItem(
+                              add: () => add(),
+                              sub: () => sub(),
+                            );
+                          },
+                        );
+                      } else {
+                        return Container(
+                          height: size.height / 2,
+                          width: size.width,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "No Reviews Yet!",
+                            style: TextStyle(
+                              fontSize: size.width / 18,
+                              fontWeight: FontWeight.w500,
                             ),
-                          );
-                        }
-                      },
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          bottomNavigationBar: _isAdded
-              ? Container(
-                  height: size.width / 7,
-                  width: size.width,
-                  alignment: Alignment.center,
-                  child: CustomButton(
-                    text: "Proceed To Cart",
-                    color: Colors.black,
-                    function: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => ScheduleBookingScreen(),
-                      ),
-                    ),
-                    width: 2,
+                          ),
+                        );
+                      }
+                    },
                   ),
                 )
-              : null,
+              ],
+            ),
+          ),
+          // bottomNavigationBar: _isAdded
+          //     ? Container(
+          //         height: size.width / 7,
+          //         width: size.width,
+          //         alignment: Alignment.center,
+          //         child: CustomButton(
+          //           text: "Proceed To Cart",
+          //           color: Colors.black,
+          //           function: () => showSheet(),
+          //           // function: () => Navigator.of(context).push(
+          //           //   MaterialPageRoute(
+          //           //     builder: (_) => ScheduleBookingScreen(),
+          //           //   ),
+          //           // ),
+          //           width: 2,
+          //         ),
+          //       )
+          //     : null,
+          floatingActionButton: isDown
+              ? FloatingActionButton(
+                  onPressed: () {},
+                  backgroundColor: Colors.black,
+                )
+              : FloatingActionButton.extended(
+                  onPressed: () => showSheet(),
+                  label: Text("Proceed to Cart"),
+                  backgroundColor: Colors.black,
+                ),
         ),
       ),
     );

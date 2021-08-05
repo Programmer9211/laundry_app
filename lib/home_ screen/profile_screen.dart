@@ -33,12 +33,25 @@ class ProfileScreen extends StatelessWidget {
                       Expanded(
                         child: Container(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Username",
+                          child: RichText(
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: size.width / 15,
-                              fontWeight: FontWeight.w500,
+                            text: TextSpan(
+                              text: "Username",
+                              style: TextStyle(
+                                fontSize: size.width / 15,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "\nemail@gmail.com",
+                                  style: TextStyle(
+                                    fontSize: size.width / 22,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -72,17 +85,48 @@ class ProfileScreen extends StatelessWidget {
                   height: size.height / 20,
                 ),
 
-                header(size, "Food Orders"),
+                Container(
+                  height: size.height / 400,
+                  width: size.width,
+                  color: Colors.grey,
+                ),
+
+                Container(
+                  height: size.height / 10,
+                  child: Row(
+                    children: [
+                      tiles(size, "Noification", Icons.notifications_none),
+                      tiles(size, "Settings", Icons.settings),
+                      tiles(size, "Payments", Icons.payment),
+                    ],
+                  ),
+                ),
+
+                Container(
+                  height: size.height / 400,
+                  width: size.width,
+                  color: Colors.grey,
+                ),
+
+                SizedBox(
+                  height: size.height / 50,
+                ),
+
+                header(size, "Laundry Orders"),
 
                 tile(size, "Your Orders", Icons.add_shopping_cart),
 
-                tile(size, "Food Orders", Icons.add_comment),
+                tile(size, "Laundry Orders", Icons.add_comment),
 
                 tile(size, "Adress Book", Icons.book),
 
                 tile(size, "Online Order Help", Icons.help_center),
 
-                // tile(size, "Name: Username"),
+                header(size, "Options"),
+
+                tile(size, "Rate Us", Icons.star),
+
+                tile(size, "LogOut", Icons.logout),
               ],
             ),
           ),
@@ -114,6 +158,32 @@ class ProfileScreen extends StatelessWidget {
         style: TextStyle(
           fontSize: size.width / 22,
           fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+
+  Widget tiles(Size size, String title, IconData icon) {
+    return Expanded(
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: size.width / 18,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: size.height / 200),
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: size.width / 25,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
